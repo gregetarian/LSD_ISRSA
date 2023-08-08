@@ -4,15 +4,13 @@ Code to run searchlight-wise functional hyperalignment and inter-subject represe
 First run hyperalign_searchlight_LSD.py in a python 2.7 environment
 - this step hyperaligns data to a common space in a searchlight-wise fashion. Implemented in pyMVPA2 as per Guntapalli et al., 2016
 
-Second, run LSDhyperaligned_is_RSA_searchlight.py in a python 3.8+ environment. 
-- this step performs a searchlight-wise intersubject representational similarity analysis to determine which hyperaligned voxels encode intersubject variation in a given behavioural score as per Finn et al., 2020.
+Second, run LSDhyperaligned_is_RSA_searchlight.py in a python 3.8+ environment.
 
-- This is performed in 3 steps:
-i). An interparticipant similarity matrix is computed for participant's behavioural scores for a chosen dimension (in this case, ego dissolution).
+This step performs a searchlight-wise intersubject representational similarity analysis to determine which hyperaligned voxels encode intersubject variation in a given behavioural score as per Finn et al., 2020. This is performed in 3 steps:
 
-ii). Timeseries are created for 3mm radii spheres (aka searchlights), over which an intersubject similarity matrix is computed for each searchlight individually. This step is parallelised across all available cores by default.
-
-iii). The euclidian distance between each searchlight-wise intersubject similarity matrix computed in step 2, and behavioural intersubject similarity matrix computed in step 1 is computed. This outputs a nifti image of voxelwise representational similarity between intersubject variation in voxelwise activity and intersubject variation in subjective experience across the chosen behavioural dimension. This step is parallelised across all available cores by default.
+- An interparticipant similarity matrix is computed for participant's behavioural scores for a chosen dimension (in this case, ego dissolution).
+- Timeseries are created for 3mm radii spheres (aka searchlights), over which an intersubject similarity matrix is computed for each searchlight individually. This step is parallelised across all available cores by default.
+- The euclidian distance between each searchlight-wise intersubject similarity matrix computed in step 2, and behavioural intersubject similarity matrix computed in step 1 is computed. This outputs a nifti image of voxelwise representational similarity between intersubject variation in voxelwise activity and intersubject variation in subjective experience across the chosen behavioural dimension. This step is parallelised across all available cores by default.
 
 Finally, run FWHMx_hyperaligned_multithresh_rsa.sh for cluster-size correction on outputs.
 
